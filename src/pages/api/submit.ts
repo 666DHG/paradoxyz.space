@@ -13,7 +13,15 @@ export const POST: APIRoute = async ({ request, locals }) => {
 
   // Access D1 via locals.runtime.env
   // @ts-ignore
-  const db = locals.runtime.env.DB;
+  const runtime = locals.runtime;
+  
+  if (!runtime || !runtime.env || !runtime.env.DB) {
+    return new Response(JSON.stringify({ 
+      error: "Database binding 'DB' not found. Please check Cloudflare Pages settings." 
+    }), { status: 500 });
+  }
+
+  const db = runtime.env.DB;
 
   try {
     const info = await db.prepare(
