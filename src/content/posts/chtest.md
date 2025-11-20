@@ -10,6 +10,53 @@ image: '\img\chtest.png'
 
 **教学目标核心：** 树立正确的人生观、价值观，深刻理解马克思对人的本质的科学认识，最终形成奉献祖国、奉献人民的人生追求。
 
+<form id="myForm" class="p-4 border rounded">
+  <fieldset>
+    <label>Text: <input type="text" name="textInput" placeholder="Type something" required /></label><br/>
+    <label>Number: <input type="number" name="numInput" placeholder="Insert number" /></label><br/>
+    <label>Select:
+      <select name="selectOption">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+      </select>
+    </label><br/>
+    <textarea name="message" placeholder="Insert a comment..."></textarea><br/>
+    <button type="submit">Submit</button>
+  </fieldset>
+  <div id="result" style="margin-top: 10px;"></div>
+</form>
+
+<script>
+  // JavaScript 部分：拦截表单提交，发送给后端
+  const form = document.getElementById('myForm');
+  const resultDiv = document.getElementById('result');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // 阻止页面刷新
+    resultDiv.innerText = "Submitting...";
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        body: formData // 自动处理为 multipart/form-data
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        resultDiv.innerText = "Success! Data saved.";
+        form.reset(); // 清空表单
+      } else {
+        resultDiv.innerText = "Error: " + (data.error || "Unknown error");
+      }
+    } catch (error) {
+      resultDiv.innerText = "Network Error";
+    }
+  });
+</script>
+
 ## 一、确立正确人生价值观的极端重要性
 
 ### 1. 习近平总书记的论述：人生的“第一粒扣子”

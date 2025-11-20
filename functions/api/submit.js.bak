@@ -1,0 +1,25 @@
+export async function onRequestPost(context) {
+  // 1. 获取请求中的数据
+  const formData = await context.request.formData();
+  const text = formData.get('textInput');
+  const num = formData.get('numInput');
+  const option = formData.get('selectOption');
+  const msg = formData.get('message');
+
+  // 2. 简单的数据验证 (可选)
+  if (!text || !msg) {
+    return new Response(JSON.stringify({ error: "Missing fields" }), { status: 400 });
+  }
+
+  // 3. 插入数据到 D1 数据库
+  // context.env.DB 对应 wrangler.toml 中的 binding 名字
+  try {
+    const info = await context.env.DB.prepare(
+      "INSERT INTO submissions (text_content, number_value, select_option, message) VALUES (?, ?, ?, ?)"
+    ).bind(text, num, option, msg).run();
+
+    return new Response(JSON.stringify({ success: true, data: info }), { status: 200 });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
+  }
+}
