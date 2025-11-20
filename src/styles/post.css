@@ -3,6 +3,12 @@
   width: 100%;
 }
 
+/* 调整图片（figure元素）与上方内容的间距 */
+.content figure {
+  margin-top: -1rem; /* 您可以根据需要调整这个值，例如 1rem, 0.5rem 等 */
+  /* 默认值可能是 2.5rem 或更大，我们把它改小一些 */
+}
+
 .post {
   width: 100%;
   text-align: left;

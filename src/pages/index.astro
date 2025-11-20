@@ -8,19 +8,20 @@ const posts = (await getCollection('posts'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="Terminal">
+<BaseLayout title="paradoxyz.space">
   <div class="index-content framed">
     <h1 id="hello-there">Hello there!</h1>
-    <p>Welcome to the Astro Terminal theme! This is a port of the popular Hugo Terminal theme by panr, bringing the same retro terminal aesthetic to Astro.</p>
+    <p>Welcome to paradoxyz.space!</p>
     <p>
       You can customise the colour scheme using panr's <a href="https://panr.github.io/terminal-css/"><strong>Terminal.css</strong></a> 
       generator - all generated schemes are fully compatible with this theme.
     </p>
-    <p>
-      <a href="https://panr.github.io/terminal-css/">
-        <img src="https://panr.github.io/hugo-theme-terminal-demo/img/terminal-css.png" alt="Terminal.css Preview" />
-      </a>
-    </p>
+    <figure>
+     <img src="/img/home.png" alt="Celeste Summit Ending">
+        <figcaption>
+          <p>Celeste uwu</p>
+        </figcaption>
+    </figure>
   </div>
   
   <div class="posts">
