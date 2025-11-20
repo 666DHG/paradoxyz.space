@@ -1,9 +1,9 @@
 ---
 title: '中文测试'
-description: 'uwu'
 pubDate: 2019-03-10
 author: 'paradoxyz'
 tags: []
+image: '\img\chtest.png'
 ---
 
 # 《思想道德与价值观教育》第一讲：领悟人生真谛 把握人生方向
