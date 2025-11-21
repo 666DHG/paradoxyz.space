@@ -1,5 +1,5 @@
 ---
-title: 'Rich Content'
+title: 'Elements for Reference'
 description: 'Examples of embedded media content'
 pubDate: 2019-03-10
 author: 'Terminal Theme Authors'
@@ -9,6 +9,59 @@ tags: ['media', 'embeds', 'video']
 This page demonstrates how to embed various types of media content in the Astro Terminal theme, including YouTube videos, Vimeo players, and GitHub code snippets.
 
 ---
+
+## LaTeX
+
+??
+
+## Forms
+
+<form id="myForm" class="p-4 border rounded">
+  <fieldset>
+    <label>Text: <input type="text" name="textInput" placeholder="Type something" required /></label><br/>
+    <label>Number: <input type="number" name="numInput" placeholder="Insert number" /></label><br/>
+    <label>Select:
+      <select name="selectOption">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+      </select>
+    </label><br/>
+    <textarea name="message" placeholder="Insert a comment..."></textarea><br/>
+    <button type="submit">Submit</button>
+  </fieldset>
+  <div id="result" style="margin-top: 10px;"></div>
+</form>
+
+<script>
+  // JavaScript 部分：拦截表单提交，发送给后端
+  const form = document.getElementById('myForm');
+  const resultDiv = document.getElementById('result');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); // 阻止页面刷新
+    resultDiv.innerText = "Submitting...";
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('/api/submit', {
+        method: 'POST',
+        body: formData // 自动处理为 multipart/form-data
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        resultDiv.innerText = "Success! Data saved.";
+        form.reset(); // 清空表单
+      } else {
+        resultDiv.innerText = "Error: " + (data.error || "Unknown error");
+      }
+    } catch (error) {
+      resultDiv.innerText = "Network Error";
+    }
+  });
+</script>
 
 ## YouTube Video Embed
 
