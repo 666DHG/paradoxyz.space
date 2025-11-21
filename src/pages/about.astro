@@ -25,33 +25,35 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </form>
 
     <script>
-      const form = document.getElementById('subscribeForm');
-      const resultDiv = document.getElementById('result');
+      const form = document.getElementById('subscribeForm') as HTMLFormElement | null;
+      const resultDiv = document.getElementById('result') as HTMLDivElement | null;
 
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        resultDiv.innerText = "Submitting...";
+      if (form && resultDiv) {
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          resultDiv.innerText = "Submitting...";
 
-        const formData = new FormData(form);
+          const formData = new FormData(form);
 
-        try {
-          const response = await fetch('/api/subscribe', {
-            method: 'POST',
-            body: formData
-          });
+          try {
+            const response = await fetch('/api/subscribe', {
+              method: 'POST',
+              body: formData
+            });
 
-          const data = await response.json();
+            const data = await response.json();
 
-          if (response.ok) {
-            resultDiv.innerText = "已订阅/Subscribed (●'◡'●)";
-            form.reset();
-          } else {
-            resultDiv.innerText = "Error: " + (data.error || "Unknown error");
+            if (response.ok) {
+              resultDiv.innerText = "已订阅/Subscribed (●'◡'●)";
+              form.reset();
+            } else {
+              resultDiv.innerText = "Error: " + (data.error || "Unknown error");
+            }
+          } catch (error) {
+            resultDiv.innerText = "网络错误/Network Error (っ °Д °;)っ";
           }
-        } catch (error) {
-          resultDiv.innerText = "网络错误/Network Error (っ °Д °;)っ";
-        }
-      });
+        });
+      }
     </script>
     
     <p>
