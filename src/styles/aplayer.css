@@ -1,0 +1,89 @@
+/* APlayer Styles */
+/* Import from CDN for APlayer core styles */
+@import url('https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css');
+
+/* Custom overrides to match terminal theme */
+.aplayer {
+  background: var(--background, #222222);
+  color: var(--accent, #ffa86a);
+  border: 1px solid var(--accent, #ffa86a);
+  box-shadow: none;
+  border-radius: 2px;
+}
+
+.aplayer .aplayer-info {
+  border-bottom-color: var(--accent, #ffa86a);
+}
+
+.aplayer .aplayer-info .aplayer-music .aplayer-title {
+  color: var(--accent, #ffa86a);
+}
+
+.aplayer .aplayer-info .aplayer-music .aplayer-author {
+  color: var(--color, #a9a9b3);
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-loaded {
+  background: rgba(169, 169, 179, 0.38);
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played {
+  background: var(--accent, #ffa86a);
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-bar-wrap .aplayer-bar .aplayer-played .aplayer-thumb {
+  background: var(--accent, #ffa86a);
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time {
+  color: var(--color, #a9a9b3);
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-time .aplayer-icon path {
+  fill: var(--color, #a9a9b3);
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar {
+  background: rgba(169, 169, 179, 0.38);
+}
+
+.aplayer .aplayer-info .aplayer-controller .aplayer-volume-wrap .aplayer-volume-bar-wrap .aplayer-volume-bar .aplayer-volume {
+  background: var(--accent, #ffa86a);
+}
+
+.aplayer .aplayer-lrc {
+  color: var(--color, #a9a9b3);
+  margin: 10px 0 5px 0;
+}
+
+.aplayer .aplayer-lrc p {
+  color: var(--color, #a9a9b3);
+}
+
+.aplayer .aplayer-lrc p.aplayer-lrc-current {
+  color: var(--accent, #ffa86a);
+  font-weight: bold;
+}
+
+.aplayer .aplayer-list {
+  background: var(--background, #222222);
+  border: 1px solid var(--accent, #ffa86a);
+  border-top: none;
+}
+
+.aplayer .aplayer-list ol li {
+  color: var(--color, #a9a9b3);
+  border-top-color: rgba(169, 169, 179, 0.2);
+}
+
+.aplayer .aplayer-list ol li:hover {
+  background: rgba(255, 168, 106, 0.1);
+}
+
+.aplayer .aplayer-list ol li.aplayer-list-light {
+  background: rgba(255, 168, 106, 0.2);
+}
+
+.aplayer .aplayer-list ol li.aplayer-list-light .aplayer-list-cur {
+  color: var(--accent, #ffa86a);
+}

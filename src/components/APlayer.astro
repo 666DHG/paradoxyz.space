@@ -1,0 +1,96 @@
+---
+export interface Props {
+  name: string;
+  artist: string;
+  url: string;
+  cover?: string;
+  lrc?: string;
+  theme?: string;
+  autoplay?: boolean;
+  loop?: 'all' | 'one' | 'none';
+}
+
+const { 
+  name, 
+  artist, 
+  url, 
+  cover = '', 
+  lrc = '',
+  theme = '#b7b7b7',
+  autoplay = false,
+  loop = 'none'
+} = Astro.props;
+
+// Generate a unique ID for this player instance
+const playerId = `aplayer-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div id={playerId} class="aplayer-container"></div>
+
+<script define:vars={{ playerId, name, artist, url, cover, lrc, theme, autoplay, loop }}>
+  function initAPlayer() {
+    if (typeof APlayer === 'undefined') {
+      console.error('APlayer 库未加载');
+      return;
+    }
+
+    const container = document.getElementById(playerId);
+    if (!container) {
+      console.error('APlayer 容器未找到');
+      return;
+    }
+
+    const audio = {
+      name: name,
+      artist: artist,
+      url: url,
+      cover: cover || undefined,
+      lrc: lrc || undefined,
+    };
+
+    new APlayer({
+      container: container,
+      theme: theme,
+      autoplay: autoplay,
+      loop: loop,
+      audio: audio,
+    });
+  }
+
+  // 等待 APlayer 库加载
+  if (window.APlayer) {
+    initAPlayer();
+  } else {
+    document.addEventListener('DOMContentLoaded', initAPlayer);
+    // 备用方案：多次尝试
+    let attempts = 0;
+    const timer = setInterval(() => {
+      attempts++;
+      if (window.APlayer || attempts > 20) {
+        clearInterval(timer);
+        initAPlayer();
+      }
+    }, 100);
+  }
+</script>
+
+<style>
+  .aplayer-container {
+    margin: 1.5em 0;
+    max-width: 100%;
+  }
+
+  .aplayer-container :global(.aplayer) {
+    font-family: inherit;
+    margin: 0;
+  }
+
+  .aplayer-container :global(.aplayer-lrc) {
+    text-align: center;
+    min-height: 30px;
+  }
+
+  .aplayer-container :global(.aplayer-pic) {
+    background-size: cover;
+  }
+</style>

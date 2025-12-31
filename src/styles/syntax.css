@@ -4,39 +4,39 @@
 /* Astro/Shiki CSS Variables for monochrome syntax highlighting */
 :root {
   /* Base colors - most text should be white/foreground */
-  --astro-code-color-text: var(--foreground);
-  --astro-code-color-background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  --astro-code-color-text: #d4d4d4;
+  --astro-code-color-background: #1e1e1e;
   
-  /* Default all tokens to foreground (white) */
-  --astro-code-foreground: var(--foreground);
-  --astro-code-token-constant: var(--foreground);
-  --astro-code-token-string: var(--foreground);
-  --astro-code-token-comment: color-mix(in srgb, var(--foreground) 50%, transparent);
-  --astro-code-token-keyword: var(--accent);
-  --astro-code-token-parameter: var(--foreground);
-  --astro-code-token-function: color-mix(in srgb, var(--accent) 70%, transparent);
-  --astro-code-token-string-expression: var(--accent);
-  --astro-code-token-punctuation: var(--foreground);
-  --astro-code-token-link: var(--accent);
+  /* VS Code Dark+ Theme Colors */
+  --astro-code-foreground: #d4d4d4;
+  --astro-code-token-constant: #569cd6;       /* Blue */
+  --astro-code-token-string: #ce9178;         /* Orange/Brown */
+  --astro-code-token-comment: #5accf0;        /* Green */
+  --astro-code-token-keyword: #569cd6;        /* Blue */
+  --astro-code-token-parameter: #9cdcfe;      /* Light Blue */
+  --astro-code-token-function: #dcdcaa;       /* Yellow */
+  --astro-code-token-string-expression: #ce9178;
+  --astro-code-token-punctuation: #d4d4d4;
+  --astro-code-token-link: #ce9178;
   
   /* Additional token types */
-  --astro-code-token-namespace: var(--foreground);
-  --astro-code-token-tag: var(--accent);
-  --astro-code-token-selector: var(--accent);
-  --astro-code-token-attribute: var(--foreground);
-  --astro-code-token-attribute-name: color-mix(in srgb, var(--accent) 70%, transparent);
-  --astro-code-token-variable: var(--foreground);
-  --astro-code-token-literal: var(--foreground);
-  --astro-code-token-number: var(--foreground);
-  --astro-code-token-unit: var(--foreground);
-  --astro-code-token-symbol: var(--foreground);
-  --astro-code-token-regex: var(--accent);
-  --astro-code-token-boolean: var(--accent);
-  --astro-code-token-important: var(--accent);
+  --astro-code-token-namespace: #4ec9b0;      /* Teal */
+  --astro-code-token-tag: #569cd6;            /* Blue */
+  --astro-code-token-selector: #d7ba7d;       /* Tan */
+  --astro-code-token-attribute: #9cdcfe;      /* Light Blue */
+  --astro-code-token-attribute-name: #9cdcfe; /* Light Blue */
+  --astro-code-token-variable: #9cdcfe;       /* Light Blue */
+  --astro-code-token-literal: #569cd6;
+  --astro-code-token-number: #b5cea8;         /* Light Green */
+  --astro-code-token-unit: #b5cea8;
+  --astro-code-token-symbol: #d4d4d4;
+  --astro-code-token-regex: #d16969;          /* Redish */
+  --astro-code-token-boolean: #569cd6;        /* Blue */
+  --astro-code-token-important: #c586c0;      /* Purple */
   
   /* Additional variables for code styling */
-  --code-border: color-mix(in srgb, var(--foreground) 25%, transparent);
-  --comment: color-mix(in srgb, var(--foreground) 50%, transparent);
+  --code-border: #333333;
+  --comment: var(--astro-code-token-comment);
 }
 
 /* Override Astro's default code block styles */
@@ -46,47 +46,10 @@
   padding: 20px 10px !important;
 }
 
-/* Override inline styles for specific token types */
-
-/* Force all text to be white by default */
-.astro-code,
-.astro-code span {
-  color: var(--foreground) !important;
-}
-
-/* Default foreground/white text */
-.astro-code span[style*="--astro-code-foreground"],
-.astro-code span[style*="--astro-code-token-punctuation"],
-.astro-code span[style*="--astro-code-token-constant"],
-.astro-code span[style*="--astro-code-token-string"],
-.astro-code span[style*="--astro-code-token-parameter"],
-.astro-code span[style*="--astro-code-token-variable"],
-.astro-code span[style*="--astro-code-token-literal"],
-.astro-code span[style*="--astro-code-token-number"] {
-  color: var(--foreground) !important;
-}
-
-/* Full orange for keywords, tags, string expressions */
-.astro-code span[style*="--astro-code-token-keyword"],
-.astro-code span[style*="--astro-code-token-string-expression"],
-.astro-code span[style*="--astro-code-token-tag"],
-.astro-code span[style*="--astro-code-token-selector"],
-.astro-code span[style*="--astro-code-token-regex"],
-.astro-code span[style*="--astro-code-token-boolean"],
-.astro-code span[style*="--astro-code-token-important"] {
-  color: var(--accent) !important;
-}
-
-/* 70% opacity orange for attribute names (using token-function in HTML) */
-.astro-code span[style*="--astro-code-token-function"] {
-  color: var(--accent) !important;
-  opacity: 0.7;
-}
-
-/* Muted comments */
-.astro-code span[style*="--astro-code-token-comment"] {
-  color: var(--comment) !important;
-}
+/* 
+   REMOVED: Aggressive overrides that forced monochrome colors.
+   Now the variables defined in :root will take effect.
+*/
 
 /* Line highlighting */
 .highlight-line {

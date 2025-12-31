@@ -10,58 +10,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       这里是 paradoxyz 的博客，还没想好要写什么uwu
     </p>
     <p>
-      本博客基于 Astro 搭建，使用了 Astro Terminal 主题
+      Email: <a href="mailto:contact@paradoxyz.space">contact@paradoxyz.space</a>
     </p>
-    
-    <form id="subscribeForm" class="p-4 border rounded">
-      <fieldset>
-        <center><b>欢迎订阅/Subscribe to our newsletter</b></center>
-        <center>虽然还没配置好uwu</center>
-        <label>昵称/NickName: <input type="text" name="name" placeholder="选填 Optional" /></label><br/>
-        <label>邮箱/Email: <input type="email" name="email" placeholder="必填 Required" required /></label><br/>
-        <button type="submit">订阅/Subscribe</button>
-      </fieldset>
-      <div id="result" style="margin-top: 10px;"></div>
-    </form>
 
-    <script>
-      const form = document.getElementById('subscribeForm') as HTMLFormElement | null;
-      const resultDiv = document.getElementById('result') as HTMLDivElement | null;
-
-      if (form && resultDiv) {
-        form.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          resultDiv.innerText = "Submitting...";
-
-          const formData = new FormData(form);
-
-          try {
-            const response = await fetch('/api/subscribe', {
-              method: 'POST',
-              body: formData
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-              resultDiv.innerText = "已订阅/Subscribed (●'◡'●)";
-              form.reset();
-            } else {
-              resultDiv.innerText = "Error: " + (data.error || "Unknown error");
-            }
-          } catch (error) {
-            resultDiv.innerText = "网络错误/Network Error (っ °Д °;)っ";
-          }
-        });
-      }
-    </script>
-    
-    <p>
-      The theme features syntax highlighting with Shiki, customisable colour schemes via
-      <a href="https://panr.github.io/terminal-css/" target="_blank" rel="noopener">Terminal.css</a>,
-      Fira Code monospace font, and a beautiful retro terminal aesthetic.
-    </p>
-    
   </div>
 </BaseLayout>
 
