@@ -46,7 +46,12 @@
   max-width: 100%;
   max-height: 100%;
   object-fit: contain;
-  animation: zoomIn 0.3s ease-in-out;
+  animation: zoomIn 0.3s ease-in-out, blurFade 0.4s ease-in-out;
+  filter: blur(10px);
+}
+
+.lightbox-image.loaded {
+  filter: blur(0px);
 }
 
 @keyframes zoomIn {
@@ -57,6 +62,15 @@
   to {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes blurFade {
+  from {
+    filter: blur(10px);
+  }
+  to {
+    filter: blur(0px);
   }
 }
 
